@@ -1,7 +1,7 @@
 name: CI
 
 env:
-  owner: arnaudroques
+  owner: evantill
 
 on:
   create:

@@ -12,7 +12,7 @@ plugins {
 	signing
 }
 
-group = "net.sourceforge.plantuml"
+group = "com.github.evantill.plantuml"
 description = "PlantUML"
 
 java {
@@ -107,17 +107,17 @@ publishing {
 				}
 			}
 			scm {
-				connection.set("scm:git:git://github.com:plantuml/plantuml.git")
-				developerConnection.set("scm:git:ssh://git@github.com:plantuml/plantuml.git")
-				url.set("https://github.com/plantuml/plantuml")
+				connection.set("scm:git:git://github.com:evantill/plantuml.git")
+				developerConnection.set("scm:git:ssh://git@github.com:evantill/plantuml.git")
+				url.set("https://github.com/evantill/plantuml")
 			}
 		}
 	}
 	repositories {
 		maven {
 			name = "OSSRH"
-			val releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-			val snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
+			val releasesRepoUrl: String by project
+			val snapshotsRepoUrl: String by project
 			url = uri(if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl)
 			credentials {
 				username = System.getenv("OSSRH_USERNAME")
@@ -158,14 +158,16 @@ val pdfJar by tasks.registering(Jar::class) {
 }
 
 signing {
-	if (hasProperty("signing.gnupg.keyName") && hasProperty("signing.gnupg.passphrase")) {
+	val useGpgCmd = hasProperty("signing.gnupg.keyName") && hasProperty("signing.gnupg.passphrase")
+	val useInMemoryPgpKey = hasProperty("signingKey") && hasProperty("signingPassword")
+	if (useGpgCmd) {
 		useGpgCmd()
-	} else if (hasProperty("signingKey") && hasProperty("signingPassword")) {
+	} else if (useInMemoryPgpKey) {
 		val signingKey: String? by project
 		val signingPassword: String? by project
 		useInMemoryPgpKeys(signingKey, signingPassword)
 	}
-	if (hasProperty("signing.gnupg.passphrase") || hasProperty("signingPassword")) {
+	if (useGpgCmd || useInMemoryPgpKey) {
 		sign(publishing.publications["maven"])
 		sign(closureOf<SignOperation> { sign(pdfJar.get()) })
 	}
