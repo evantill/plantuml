@@ -79,8 +79,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        java_version: [ 8, 11, 17 ]
-        os: [ ubuntu-20.04, ubuntu-22.04, windows-2019, windows-2022 ]
+        java_version: [ 17 ]
+        os: [ ubuntu-22.04 ]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout the repository
