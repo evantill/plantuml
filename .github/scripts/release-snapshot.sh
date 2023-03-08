@@ -17,8 +17,8 @@ mkdir "${RELEASE_DIR}"
 echo "debug message: pwd:$(pwd)"
 echo "debug message: RELEASE_DIR:${RELEASE_DIR}"
 ls ..
-echo "check build/publication"
-tree build/publication
+echo "check build/publications"
+tree build/publications
 
 ln -s "../publications/maven/module.json"                    "${RELEASE_DIR}/plantuml-SNAPSHOT-module.json"
 ln -s "../publications/maven/pom-default.xml"                "${RELEASE_DIR}/plantuml-SNAPSHOT.pom"

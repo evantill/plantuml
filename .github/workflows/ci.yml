@@ -110,7 +110,7 @@ jobs:
           path: build/reports/tests/
 
   upload:
-    needs: [ workflow_config, test ]
+    needs: [ workflow_config ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repository
@@ -137,7 +137,7 @@ jobs:
             -x test
 
       - name: Sign artifacts
-        if: ${{ secrets.ARTIFACT_SIGNING_KEY }}
+        if: env.ORG_GRADLE_PROJECT_signingKey
         env:
           ORG_GRADLE_PROJECT_signingKey: ${{ secrets.ARTIFACT_SIGNING_KEY }}
           ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.ARTIFACT_SIGNING_PASSPHRASE }}
@@ -159,6 +159,8 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.ARTIFACT_SIGNING_KEY }}
+          ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.ARTIFACT_SIGNING_PASSPHRASE }}
         run: |
           .github/scripts/release-snapshot.sh
           gradle publish
