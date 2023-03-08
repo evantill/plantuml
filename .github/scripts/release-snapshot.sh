@@ -14,6 +14,12 @@ git push --force origin "${TAG}"
 
 mkdir "${RELEASE_DIR}"
 
+echo "debug message: pwd:$(pwd)"
+echo "debug message: RELEASE_DIR:${RELEASE_DIR}"
+ls ..
+echo "check build/publication"
+tree build/publication
+
 ln -s "../publications/maven/module.json"                    "${RELEASE_DIR}/plantuml-SNAPSHOT-module.json"
 ln -s "../publications/maven/pom-default.xml"                "${RELEASE_DIR}/plantuml-SNAPSHOT.pom"
 ln -s "../libs/plantuml-${POM_VERSION}.jar"                  "${RELEASE_DIR}/plantuml-SNAPSHOT.jar"
@@ -30,6 +36,9 @@ if [[ -e "build/publications/maven/module.json.asc" ]]; then
   ln -s "../libs/plantuml-${POM_VERSION}-sources.jar.asc"    "${RELEASE_DIR}/plantuml-SNAPSHOT-sources.jar.asc"
   ln -s "../libs/plantuml-pdf-${POM_VERSION}.jar.asc"        "${RELEASE_DIR}/plantuml-pdf-SNAPSHOT.jar.asc"
 fi
+
+echo "check RELEASE_DIR"
+ls -lisart "${RELEASE_DIR}"
 
 echo -n "${DATE_TIME_UTC}" > "${RELEASE_DIR}/plantuml-SNAPSHOT.timestamp"
 
