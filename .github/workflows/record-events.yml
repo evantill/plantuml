@@ -1,0 +1,22 @@
+name: Record events
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push,workflow_dispatch]
+jobs:
+  record-github-context:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - name : record github context
+        env : { CONTENT : "${{ toJson(github) }}" }
+        run : |
+          echo $CONTENT
+          echo $CONTENT > github-context.json
+      - name: upload github context
+        uses: actions/upload-artifact@v3
+        with:
+          name: github-context.json
+          path: github-context.json
