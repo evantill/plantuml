@@ -1,5 +1,5 @@
 name: Record events
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+run-name: ${{ github.actor }} is recording events
 on: [push,workflow_dispatch]
 jobs:
   record-github-context:
