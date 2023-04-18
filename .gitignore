@@ -17,10 +17,6 @@ target/
 /.gradle
 build/
 
-# Eclipse Project files
-.settings/
-.classpath
-.project
-
 # for jenv users
 .java-version
+/bin/
