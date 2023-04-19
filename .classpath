@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="skin"/>
-	<classpathentry kind="src" path="stdlib"/>
-	<classpathentry kind="src" path="svg"/>
+	<classpathentry excluding="src/|test/" including="skin/|stdlib/|svg/|themes/" kind="src" path=""/>
 	<classpathentry kind="src" path="test"/>
-	<classpathentry kind="src" path="themes"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="module" value="true"/>
@@ -14,12 +11,12 @@
 	<classpathentry kind="lib" path="lib/ant.jar"/>
 	<classpathentry kind="lib" path="lib/jxl.jar"/>
 	<classpathentry kind="lib" path="lib/HTTPClient-0.3-3.jar"/>
-	<classpathentry kind="lib" path="/lib/batik-all-1.7.jar"/>
-	<classpathentry kind="lib" path="/lib/jlatexmath-minimal-1.0.3.jar"/>
-	<classpathentry kind="lib" path="/lib/jlm_cyrillic.jar"/>
-	<classpathentry kind="lib" path="/lib/jlm_greek.jar"/>
+	<classpathentry kind="lib" path="lib/batik-all-1.7.jar"/>
+	<classpathentry kind="lib" path="lib/jlatexmath-minimal-1.0.3.jar"/>
+	<classpathentry kind="lib" path="lib/jlm_cyrillic.jar"/>
+	<classpathentry kind="lib" path="lib/jlm_greek.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="lib" path="lib/assertj-core-3.19.0.jar"/>
-	<classpathentry kind="lib" path="/lib/elk-full.jar"/>
+	<classpathentry kind="lib" path="lib/elk-full.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
